@@ -1,0 +1,22 @@
+{
+  "name": "new-brew",
+  "version": "1.0.0",
+  "description": "Collects new registered beers information from Estonian National Alcohol Registry",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "beer",
+    "registry",
+    "brew"
+  ],
+  "author": "Harri Siirak <harri@siirak.ee>",
+  "license": "MIT",
+  "dependencies": {
+    "moment": "^2.15.1",
+    "radix-64": "^1.0.4",
+    "request": "^2.75.0",
+    "xml-stream": "^0.4.5"
+  }
+}
