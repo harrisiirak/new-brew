@@ -2,15 +2,15 @@
 
 const fs = require('fs');
 const ejs = require('ejs');
-const moment = require('moment');
+const moment = require('moment-timezone');
 
 function generateDocument (products, template = 'default', path = './build/') {
   return new Promise((resolve, reject) => {
     const data = {
       products,
-      updated: moment().format('YYYY-MM-DD HH:mm:ss')
+      updated: moment().tz('Europe/Tallinn').format('YYYY-MM-DD HH:mm:ss')
     };
-    
+
     ejs.renderFile('./templates/' + template + '.ejs', data, { }, (err, str) => {
       if (err) {
         reject(err);
