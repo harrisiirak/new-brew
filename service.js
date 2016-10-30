@@ -102,6 +102,10 @@ function findProductsByType ({ type = 'Õlu', filterSince = null }) {
             product.producerName = BREWERY_MAPPINGS[product.producerName];
           }
 
+          if (BREWERY_MAPPINGS[product.applicantName]) {
+            product.applicantName = BREWERY_MAPPINGS[product.applicantName];
+          }
+
           product.capacity = [ product.capacity ];
           product.uid = radix64.encodeBuffer(new Buffer(
             product.productName + product.producerName
