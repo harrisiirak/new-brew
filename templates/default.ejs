@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Uued õlled">
+    <meta name="author" content="">
+
+    <title>Uued õlled Eesti alkoregistris</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="container">
+
+    <div class="page-header">
+        <h1>Uued õlled Eesti alkoregistris</h1>
+        <p class="lead">
+            <p>
+                Antud informatsioon on kogutud Eesti algoregistri <a href="https://alkoreg.agri.ee/avaandmed" target="_blank">avaandmetest</a> ning lisana on juurde kaevatud <strong>RateBeeri</strong> andmed.
+            </p>
+            <p>
+                <strong>RateBeerist</strong> kogutud andmete täpsus oleneb alkoregistrisse sisestatud andmete korrektsusest (mis pole tihti kõige parem). Andmestik uueneb <strong>iga 3 tunni</strong> järel ja sisaldab viimase <strong>30</strong> päeva sissekandeid.
+            </p>
+        </p>
+    </div>
+
+    <% Object.keys(products).forEach((day) => { %>
+    <h3><%= day %></h3>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th class="col-md-3">Nimi</th>
+            <th class="col-md-2">Tootja</th>
+            <th class="col-md-2">Stiil</th>
+            <th class="col-md-1">Kangus</th>
+            <th class="col-md-2">Hinnang (O/S/M)</th>
+            <th class="col-md-1">Link</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% products[day].forEach((product) => { %>
+            <tr>
+                <td><%= product.productName %></td>
+                <td><%= product.producerName !== 'null' && product.producerName || '' %></td>
+                <td><%= product.rb && product.rb.style %></td>
+                <td><%= parseFloat(product.ethanolRate).toFixed(1) %>%</td>
+                <td>
+                    <% if (product.rb && product.rb.ratingsCount > 0) { %>
+                      <strong><%= product.rb.ratingOverall || 0 %></strong>/<strong><%= product.rb.ratingStyle || 0 %></strong>
+                      <span>(<%= product.rb.ratingsWeightedAverage %>/5)</span>
+                    <% } %>
+                </td>
+                <td>
+                    <% if (product.rb) { %>
+                    <a href="http://www.ratebeer.com<%= product.rb.url %>" target="_blank">RB</a>
+                    <% } %>
+                </td>
+            </tr>
+        <% }); %>
+        </tbody>
+    </table>
+    <% }); %>
+</div> <!-- /container -->
+</body>
+</html>

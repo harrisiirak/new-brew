@@ -14,8 +14,10 @@
   "author": "Harri Siirak <harri@siirak.ee>",
   "license": "MIT",
   "dependencies": {
+    "ejs": "^2.5.2",
     "moment": "^2.15.1",
     "radix-64": "^1.0.4",
+    "ratebeer": "git+https://github.com/harrisiirak/ratebeer-scraper.git",
     "request": "^2.75.0",
     "xml-stream": "^0.4.5"
   }
