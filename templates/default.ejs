@@ -40,7 +40,8 @@
         <thead>
         <tr>
             <th class="col-md-3">Nimi</th>
-            <th class="col-md-2">Tootja</th>
+            <th class="col-md-1">Tootja</th>
+            <th class="col-md-1">Taotleja</th>
             <th class="col-md-2">Stiil</th>
             <th class="col-md-1">Kangus</th>
             <th class="col-md-2">Hinnang (O/S/M)</th>
@@ -52,6 +53,7 @@
             <tr>
                 <td><%= product.productName %></td>
                 <td><%= product.producerName !== 'null' && product.producerName || '' %></td>
+                <td><%= product.applicantName !== 'null' && product.applicantName || '' %></td>
                 <td><%= product.rb && product.rb.style %></td>
                 <td><%= parseFloat(product.ethanolRate).toFixed(1) %>%</td>
                 <td>
