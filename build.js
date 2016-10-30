@@ -16,7 +16,7 @@ function generateDocument (products, template = 'default') {
         reject(err);
         return;
       }
-      
+
       fs.writeFileSync(__dirname + '/build/index.html', str);
       resolve();
     });

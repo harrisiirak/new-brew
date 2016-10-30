@@ -9,12 +9,17 @@ const XmlStream = require('xml-stream');
 const build = require('./build');
 
 const REGISTRY_XML_ENDPOINT = 'https://alkoreg.agri.ee/avaandmed';
+
 const BREWERY_MAPPINGS = {
   '59N Brewing OÜ': 'Tanker',
   'Humalasulased OÜ': 'Pühaste',
   'Õllekunsti OÜ': 'Põhjala',
   'V.Kase OÜ': 'Õllevõlur'
 };
+
+const APPLICANT_OVERRIDES = [
+  'Vaat OÜ'
+];
 
 function findRatebeerMetadataForProduct (product) {
   const beer = product.productName.split(' ')
@@ -38,7 +43,12 @@ function findRatebeerMetadataForProduct (product) {
       return true;
     });
 
-  const brewery = product.producerName.split(' ')
+  let producerName = product.producerName;
+  if (APPLICANT_OVERRIDES.indexOf(product.applicantName) !== -1) {
+    producerName = product.applicantName;
+  }
+
+  const brewery = producerName.split(' ')
     .map((part) => (part.toLocaleLowerCase()))
     .map((part) => {
       return part
@@ -51,7 +61,7 @@ function findRatebeerMetadataForProduct (product) {
 
   return new Promise((resolve) => {
     const name = [];
-
+    
     if (brewery && brewery.length >= 3 && beer.indexOf(brewery) === -1) {
       name.push(brewery + ' ' + beer.join(' '));
     }
