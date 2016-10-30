@@ -4,7 +4,7 @@ const fs = require('fs');
 const ejs = require('ejs');
 const moment = require('moment-timezone');
 
-function generateDocument (products, template = 'default', path = './build/') {
+function generateDocument (products, template = 'default') {
   return new Promise((resolve, reject) => {
     const data = {
       products,
@@ -17,7 +17,7 @@ function generateDocument (products, template = 'default', path = './build/') {
         return;
       }
 
-      fs.writeFileSync(path + 'index.html', str);
+      fs.writeFileSync(__dirname +  + '/build/index.html', str);
       resolve();
     });
   });
