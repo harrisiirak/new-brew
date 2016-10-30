@@ -11,7 +11,7 @@ function generateDocument (products, template = 'default', path = './build/') {
       updated: moment().tz('Europe/Tallinn').format('YYYY-MM-DD HH:mm:ss')
     };
 
-    ejs.renderFile('./templates/' + template + '.ejs', data, data, (err, str) => {
+    ejs.renderFile(__dirname + '/templates/' + template + '.ejs', data, data, (err, str) => {
       if (err) {
         reject(err);
         return;
