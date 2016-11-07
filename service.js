@@ -61,7 +61,7 @@ function findRatebeerMetadataForProduct (product) {
 
   return new Promise((resolve) => {
     const name = [];
-    
+
     if (brewery && brewery.length >= 3 && beer.indexOf(brewery) === -1) {
       name.push(brewery + ' ' + beer.join(' '));
     }
