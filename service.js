@@ -233,7 +233,7 @@ function groupProductsByRegDate (products) {
 }
 
 findProductsByType({
-  filterSince: moment().subtract(30, 'day')
+  filterSince: moment().subtract(1, 'month')
 }).then((products) => {
   const grouped = groupProductsByRegDate(products);
   const buildPath = [ __dirname, 'build' ].join('/');
