@@ -103,6 +103,10 @@ function findProductsByType ({ type = 'Õlu', filterSince = null }) {
 
       parser.on('endElement: product', (product) => {
         if (product.productClass === type) {
+          if (!product.regEntryDate || product.regEntryDate === 'null') {
+            return;
+          }
+
           if (filterSince && moment(product.regEntryDate) < filterSince) {
             return;
           }
