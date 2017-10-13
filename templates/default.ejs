@@ -45,6 +45,7 @@
             <th class="col-md-2">Taotleja</th>
             <th class="col-md-2">Stiil</th>
             <th class="col-md-1">Kangus</th>
+            <th class="col-md-1">Maht</th>
             <th class="col-md-1">Hinnang (O/S/M)</th>
             <th class="col-md-1">Link</th>
         </tr>
@@ -57,6 +58,7 @@
                 <td><%= product.applicantName !== 'null' && product.applicantName || '' %></td>
                 <td><%= product.rb && product.rb.style %></td>
                 <td><%= parseFloat(product.ethanolRate).toFixed(1) %>%</td>
+                <td><%= product.capacity.join(', \n') %></td>
                 <td>
                     <% if (product.rb && product.rb.ratingsCount > 0) { %>
                       <strong><%= product.rb.ratingOverall || 0 %></strong>/<strong><%= product.rb.ratingStyle || 0 %></strong>
