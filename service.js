@@ -7,6 +7,7 @@ const request = require('request');
 const ratebeer = require('ratebeer');
 const XmlStream = require('xml-stream');
 const build = require('./build');
+const stringReplaceStream = require('string-replace-stream');
 
 const REGISTRY_XML_ENDPOINT = 'https://alkoreg.agri.ee/avaandmed';
 
@@ -96,7 +97,16 @@ function findProductsByType ({ type = 'Õlu', filterSince = null }) {
   return new Promise((resolve, reject) => {
     let products = [];
     let duplicates = [];
-    let req = request(REGISTRY_XML_ENDPOINT);
+    let req = request(REGISTRY_XML_ENDPOINT)
+      .pipe(stringReplaceStream('&#56319;', 'x'))
+      .pipe(stringReplaceStream('&#56342;', 'x'))
+      .pipe(stringReplaceStream('&#56359;', 'x'))
+      .pipe(stringReplaceStream('&#56321;', 'x'))
+      .pipe(stringReplaceStream('&#56350;', 'x'))
+      .pipe(stringReplaceStream('&#56338;', 'x'))
+      .pipe(stringReplaceStream('&#56360;', 'x'))
+      .pipe(stringReplaceStream('&#56337;', 'x'))
+      .pipe(stringReplaceStream('&#56337;', 'x'));
 
     try {
       const parser = new XmlStream(req);
@@ -203,18 +213,7 @@ function findProductsByType ({ type = 'Õlu', filterSince = null }) {
           return product;
         });
 
-        const pushMetadataDownload = (items) => {
-          if (!items.length) {
-            resolve(products);
-            return;
-          }
-
-          return findRatebeerMetadataForProduct(items[0]).then(() => {
-            return pushMetadataDownload(items.slice(1));
-          });
-        };
-
-        return pushMetadataDownload(products);
+        resolve(products);
       });
     } catch (err) {
       reject(err);
