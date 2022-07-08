@@ -15,7 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "ejs": "^2.5.2",
-    "moment": "^2.15.2",
+    "moment": "^2.29.4",
     "moment-timezone": "^0.5.9",
     "radix-64": "^1.0.4",
     "ratebeer": "git+https://github.com/harrisiirak/ratebeer-scraper.git",
