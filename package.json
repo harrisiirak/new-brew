@@ -14,7 +14,7 @@
   "author": "Harri Siirak <harri@siirak.ee>",
   "license": "MIT",
   "dependencies": {
-    "ejs": "^2.5.2",
+    "ejs": "^3.1.7",
     "moment": "^2.15.2",
     "moment-timezone": "^0.5.9",
     "radix-64": "^1.0.4",
